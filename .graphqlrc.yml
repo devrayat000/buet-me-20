@@ -1,0 +1,15 @@
+schema: http://localhost:3001/api/graphql
+documents: 'src/graphql/*.graphql'
+extensions:
+  codegen:
+    schema: http://localhost:3001/api/graphql
+    documents: 'src/graphql/*.graphql'
+
+    generates:
+      src/graphql/generated.ts:
+        config:
+          withHooks: true
+        plugins:
+          - typescript
+          - typescript-operations
+          - typescript-urql
