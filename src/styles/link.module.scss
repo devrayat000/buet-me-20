@@ -1,5 +1,5 @@
 .navlink {
-    @apply relative p-2;
+    @apply relative p-2 text-gray-300;
 
     &::before, &::after {
         content: '';

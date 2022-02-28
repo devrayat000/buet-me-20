@@ -26,10 +26,6 @@
     @apply text-red-700;
   }
 
-  a.active {
-    @apply text-red-600;
-  }
-
   * {
     box-sizing: border-box;
   }

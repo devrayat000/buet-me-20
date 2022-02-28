@@ -16,9 +16,63 @@ export type Scalars = {
   DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
+};
+
+export type Announcement = {
+  __typename?: 'Announcement';
+  created?: Maybe<Scalars['DateTime']>;
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+};
+
+export type AnnouncementCreateInput = {
+  created?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type AnnouncementOrderByInput = {
+  created?: InputMaybe<OrderDirection>;
+  id?: InputMaybe<OrderDirection>;
+  title?: InputMaybe<OrderDirection>;
+};
+
+export type AnnouncementUpdateArgs = {
+  data: AnnouncementUpdateInput;
+  where: AnnouncementWhereUniqueInput;
+};
+
+export type AnnouncementUpdateInput = {
+  created?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type AnnouncementWhereInput = {
+  AND?: InputMaybe<Array<AnnouncementWhereInput>>;
+  NOT?: InputMaybe<Array<AnnouncementWhereInput>>;
+  OR?: InputMaybe<Array<AnnouncementWhereInput>>;
+  created?: InputMaybe<DateTimeNullableFilter>;
+  id?: InputMaybe<IdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type AnnouncementWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type AuthenticatedItem = User;
+
+export type CloudImageFieldOutput = ImageFieldOutput & {
+  __typename?: 'CloudImageFieldOutput';
+  extension: ImageExtension;
+  filesize: Scalars['Int'];
+  height: Scalars['Int'];
+  id: Scalars['ID'];
+  ref: Scalars['String'];
+  url: Scalars['String'];
+  width: Scalars['Int'];
+};
 
 export type CreateInitialUserInput = {
   email?: InputMaybe<Scalars['String']>;
@@ -46,6 +100,28 @@ export type IdFilter = {
   lte?: InputMaybe<Scalars['ID']>;
   not?: InputMaybe<IdFilter>;
   notIn?: InputMaybe<Array<Scalars['ID']>>;
+};
+
+export enum ImageExtension {
+  Gif = 'gif',
+  Jpg = 'jpg',
+  Png = 'png',
+  Webp = 'webp'
+}
+
+export type ImageFieldInput = {
+  ref?: InputMaybe<Scalars['String']>;
+  upload?: InputMaybe<Scalars['Upload']>;
+};
+
+export type ImageFieldOutput = {
+  extension: ImageExtension;
+  filesize: Scalars['Int'];
+  height: Scalars['Int'];
+  id: Scalars['ID'];
+  ref: Scalars['String'];
+  url: Scalars['String'];
+  width: Scalars['Int'];
 };
 
 export type KeystoneAdminMeta = {
@@ -148,37 +224,42 @@ export type KeystoneMeta = {
   adminMeta: KeystoneAdminMeta;
 };
 
+export type LocalImageFieldOutput = ImageFieldOutput & {
+  __typename?: 'LocalImageFieldOutput';
+  extension: ImageExtension;
+  filesize: Scalars['Int'];
+  height: Scalars['Int'];
+  id: Scalars['ID'];
+  ref: Scalars['String'];
+  url: Scalars['String'];
+  width: Scalars['Int'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   authenticateUserWithPassword?: Maybe<UserAuthenticationWithPasswordResult>;
+  createAnnouncement?: Maybe<Announcement>;
+  createAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
   createInitialUser: UserAuthenticationWithPasswordSuccess;
-  createNotification?: Maybe<Notification>;
-  createNotifications?: Maybe<Array<Maybe<Notification>>>;
-  createPost?: Maybe<Post>;
-  createPosts?: Maybe<Array<Maybe<Post>>>;
-  createTag?: Maybe<Tag>;
-  createTags?: Maybe<Array<Maybe<Tag>>>;
+  createStudent?: Maybe<Student>;
+  createStudents?: Maybe<Array<Maybe<Student>>>;
   createTodo?: Maybe<Todo>;
   createTodos?: Maybe<Array<Maybe<Todo>>>;
   createUser?: Maybe<User>;
   createUsers?: Maybe<Array<Maybe<User>>>;
-  deleteNotification?: Maybe<Notification>;
-  deleteNotifications?: Maybe<Array<Maybe<Notification>>>;
-  deletePost?: Maybe<Post>;
-  deletePosts?: Maybe<Array<Maybe<Post>>>;
-  deleteTag?: Maybe<Tag>;
-  deleteTags?: Maybe<Array<Maybe<Tag>>>;
+  deleteAnnouncement?: Maybe<Announcement>;
+  deleteAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
+  deleteStudent?: Maybe<Student>;
+  deleteStudents?: Maybe<Array<Maybe<Student>>>;
   deleteTodo?: Maybe<Todo>;
   deleteTodos?: Maybe<Array<Maybe<Todo>>>;
   deleteUser?: Maybe<User>;
   deleteUsers?: Maybe<Array<Maybe<User>>>;
   endSession: Scalars['Boolean'];
-  updateNotification?: Maybe<Notification>;
-  updateNotifications?: Maybe<Array<Maybe<Notification>>>;
-  updatePost?: Maybe<Post>;
-  updatePosts?: Maybe<Array<Maybe<Post>>>;
-  updateTag?: Maybe<Tag>;
-  updateTags?: Maybe<Array<Maybe<Tag>>>;
+  updateAnnouncement?: Maybe<Announcement>;
+  updateAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
+  updateStudent?: Maybe<Student>;
+  updateStudents?: Maybe<Array<Maybe<Student>>>;
   updateTodo?: Maybe<Todo>;
   updateTodos?: Maybe<Array<Maybe<Todo>>>;
   updateUser?: Maybe<User>;
@@ -192,38 +273,28 @@ export type MutationAuthenticateUserWithPasswordArgs = {
 };
 
 
+export type MutationCreateAnnouncementArgs = {
+  data: AnnouncementCreateInput;
+};
+
+
+export type MutationCreateAnnouncementsArgs = {
+  data: Array<AnnouncementCreateInput>;
+};
+
+
 export type MutationCreateInitialUserArgs = {
   data: CreateInitialUserInput;
 };
 
 
-export type MutationCreateNotificationArgs = {
-  data: NotificationCreateInput;
+export type MutationCreateStudentArgs = {
+  data: StudentCreateInput;
 };
 
 
-export type MutationCreateNotificationsArgs = {
-  data: Array<NotificationCreateInput>;
-};
-
-
-export type MutationCreatePostArgs = {
-  data: PostCreateInput;
-};
-
-
-export type MutationCreatePostsArgs = {
-  data: Array<PostCreateInput>;
-};
-
-
-export type MutationCreateTagArgs = {
-  data: TagCreateInput;
-};
-
-
-export type MutationCreateTagsArgs = {
-  data: Array<TagCreateInput>;
+export type MutationCreateStudentsArgs = {
+  data: Array<StudentCreateInput>;
 };
 
 
@@ -247,33 +318,23 @@ export type MutationCreateUsersArgs = {
 };
 
 
-export type MutationDeleteNotificationArgs = {
-  where: NotificationWhereUniqueInput;
+export type MutationDeleteAnnouncementArgs = {
+  where: AnnouncementWhereUniqueInput;
 };
 
 
-export type MutationDeleteNotificationsArgs = {
-  where: Array<NotificationWhereUniqueInput>;
+export type MutationDeleteAnnouncementsArgs = {
+  where: Array<AnnouncementWhereUniqueInput>;
 };
 
 
-export type MutationDeletePostArgs = {
-  where: PostWhereUniqueInput;
+export type MutationDeleteStudentArgs = {
+  where: StudentWhereUniqueInput;
 };
 
 
-export type MutationDeletePostsArgs = {
-  where: Array<PostWhereUniqueInput>;
-};
-
-
-export type MutationDeleteTagArgs = {
-  where: TagWhereUniqueInput;
-};
-
-
-export type MutationDeleteTagsArgs = {
-  where: Array<TagWhereUniqueInput>;
+export type MutationDeleteStudentsArgs = {
+  where: Array<StudentWhereUniqueInput>;
 };
 
 
@@ -297,36 +358,25 @@ export type MutationDeleteUsersArgs = {
 };
 
 
-export type MutationUpdateNotificationArgs = {
-  data: NotificationUpdateInput;
-  where: NotificationWhereUniqueInput;
+export type MutationUpdateAnnouncementArgs = {
+  data: AnnouncementUpdateInput;
+  where: AnnouncementWhereUniqueInput;
 };
 
 
-export type MutationUpdateNotificationsArgs = {
-  data: Array<NotificationUpdateArgs>;
+export type MutationUpdateAnnouncementsArgs = {
+  data: Array<AnnouncementUpdateArgs>;
 };
 
 
-export type MutationUpdatePostArgs = {
-  data: PostUpdateInput;
-  where: PostWhereUniqueInput;
+export type MutationUpdateStudentArgs = {
+  data: StudentUpdateInput;
+  where: StudentWhereUniqueInput;
 };
 
 
-export type MutationUpdatePostsArgs = {
-  data: Array<PostUpdateArgs>;
-};
-
-
-export type MutationUpdateTagArgs = {
-  data: TagUpdateInput;
-  where: TagWhereUniqueInput;
-};
-
-
-export type MutationUpdateTagsArgs = {
-  data: Array<TagUpdateArgs>;
+export type MutationUpdateStudentsArgs = {
+  data: Array<StudentUpdateArgs>;
 };
 
 
@@ -365,61 +415,6 @@ export type NestedStringFilter = {
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type NestedStringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
-};
-
-export type Notification = {
-  __typename?: 'Notification';
-  created?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-};
-
-export type NotificationCreateInput = {
-  created?: InputMaybe<Scalars['DateTime']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type NotificationOrderByInput = {
-  created?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  title?: InputMaybe<OrderDirection>;
-};
-
-export type NotificationUpdateArgs = {
-  data: NotificationUpdateInput;
-  where: NotificationWhereUniqueInput;
-};
-
-export type NotificationUpdateInput = {
-  created?: InputMaybe<Scalars['DateTime']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type NotificationWhereInput = {
-  AND?: InputMaybe<Array<NotificationWhereInput>>;
-  NOT?: InputMaybe<Array<NotificationWhereInput>>;
-  OR?: InputMaybe<Array<NotificationWhereInput>>;
-  created?: InputMaybe<DateTimeNullableFilter>;
-  id?: InputMaybe<IdFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type NotificationWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
 export enum OrderDirection {
   Asc = 'asc',
   Desc = 'desc'
@@ -430,118 +425,16 @@ export type PasswordState = {
   isSet: Scalars['Boolean'];
 };
 
-export type Post = {
-  __typename?: 'Post';
-  author?: Maybe<User>;
-  content?: Maybe<Post_Content_Document>;
-  id: Scalars['ID'];
-  publishDate?: Maybe<Scalars['DateTime']>;
-  status?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Tag>>;
-  tagsCount?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-
-export type PostTagsArgs = {
-  orderBy?: Array<TagOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: TagWhereInput;
-};
-
-
-export type PostTagsCountArgs = {
-  where?: TagWhereInput;
-};
-
-export type PostCreateInput = {
-  author?: InputMaybe<UserRelateToOneForCreateInput>;
-  content?: InputMaybe<Scalars['JSON']>;
-  publishDate?: InputMaybe<Scalars['DateTime']>;
-  status?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<TagRelateToManyForCreateInput>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PostManyRelationFilter = {
-  every?: InputMaybe<PostWhereInput>;
-  none?: InputMaybe<PostWhereInput>;
-  some?: InputMaybe<PostWhereInput>;
-};
-
-export type PostOrderByInput = {
-  id?: InputMaybe<OrderDirection>;
-  publishDate?: InputMaybe<OrderDirection>;
-  status?: InputMaybe<OrderDirection>;
-  title?: InputMaybe<OrderDirection>;
-};
-
-export type PostRelateToManyForCreateInput = {
-  connect?: InputMaybe<Array<PostWhereUniqueInput>>;
-  create?: InputMaybe<Array<PostCreateInput>>;
-};
-
-export type PostRelateToManyForUpdateInput = {
-  connect?: InputMaybe<Array<PostWhereUniqueInput>>;
-  create?: InputMaybe<Array<PostCreateInput>>;
-  disconnect?: InputMaybe<Array<PostWhereUniqueInput>>;
-  set?: InputMaybe<Array<PostWhereUniqueInput>>;
-};
-
-export type PostUpdateArgs = {
-  data: PostUpdateInput;
-  where: PostWhereUniqueInput;
-};
-
-export type PostUpdateInput = {
-  author?: InputMaybe<UserRelateToOneForUpdateInput>;
-  content?: InputMaybe<Scalars['JSON']>;
-  publishDate?: InputMaybe<Scalars['DateTime']>;
-  status?: InputMaybe<Scalars['String']>;
-  tags?: InputMaybe<TagRelateToManyForUpdateInput>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PostWhereInput = {
-  AND?: InputMaybe<Array<PostWhereInput>>;
-  NOT?: InputMaybe<Array<PostWhereInput>>;
-  OR?: InputMaybe<Array<PostWhereInput>>;
-  author?: InputMaybe<UserWhereInput>;
-  id?: InputMaybe<IdFilter>;
-  publishDate?: InputMaybe<DateTimeNullableFilter>;
-  status?: InputMaybe<StringNullableFilter>;
-  tags?: InputMaybe<TagManyRelationFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type PostWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
-export type Post_Content_Document = {
-  __typename?: 'Post_content_Document';
-  document: Scalars['JSON'];
-};
-
-
-export type Post_Content_DocumentDocumentArgs = {
-  hydrateRelationships?: Scalars['Boolean'];
-};
-
 export type Query = {
   __typename?: 'Query';
+  announcement?: Maybe<Announcement>;
+  announcements?: Maybe<Array<Announcement>>;
+  announcementsCount?: Maybe<Scalars['Int']>;
   authenticatedItem?: Maybe<AuthenticatedItem>;
   keystone: KeystoneMeta;
-  notification?: Maybe<Notification>;
-  notifications?: Maybe<Array<Notification>>;
-  notificationsCount?: Maybe<Scalars['Int']>;
-  post?: Maybe<Post>;
-  posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
-  tag?: Maybe<Tag>;
-  tags?: Maybe<Array<Tag>>;
-  tagsCount?: Maybe<Scalars['Int']>;
+  student?: Maybe<Student>;
+  students?: Maybe<Array<Student>>;
+  studentsCount?: Maybe<Scalars['Int']>;
   todo?: Maybe<Todo>;
   todos?: Maybe<Array<Todo>>;
   todosCount?: Maybe<Scalars['Int']>;
@@ -551,57 +444,39 @@ export type Query = {
 };
 
 
-export type QueryNotificationArgs = {
-  where: NotificationWhereUniqueInput;
+export type QueryAnnouncementArgs = {
+  where: AnnouncementWhereUniqueInput;
 };
 
 
-export type QueryNotificationsArgs = {
-  orderBy?: Array<NotificationOrderByInput>;
+export type QueryAnnouncementsArgs = {
+  orderBy?: Array<AnnouncementOrderByInput>;
   skip?: Scalars['Int'];
   take?: InputMaybe<Scalars['Int']>;
-  where?: NotificationWhereInput;
+  where?: AnnouncementWhereInput;
 };
 
 
-export type QueryNotificationsCountArgs = {
-  where?: NotificationWhereInput;
+export type QueryAnnouncementsCountArgs = {
+  where?: AnnouncementWhereInput;
 };
 
 
-export type QueryPostArgs = {
-  where: PostWhereUniqueInput;
+export type QueryStudentArgs = {
+  where: StudentWhereUniqueInput;
 };
 
 
-export type QueryPostsArgs = {
-  orderBy?: Array<PostOrderByInput>;
+export type QueryStudentsArgs = {
+  orderBy?: Array<StudentOrderByInput>;
   skip?: Scalars['Int'];
   take?: InputMaybe<Scalars['Int']>;
-  where?: PostWhereInput;
+  where?: StudentWhereInput;
 };
 
 
-export type QueryPostsCountArgs = {
-  where?: PostWhereInput;
-};
-
-
-export type QueryTagArgs = {
-  where: TagWhereUniqueInput;
-};
-
-
-export type QueryTagsArgs = {
-  orderBy?: Array<TagOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: TagWhereInput;
-};
-
-
-export type QueryTagsCountArgs = {
-  where?: TagWhereInput;
+export type QueryStudentsCountArgs = {
+  where?: StudentWhereInput;
 };
 
 
@@ -654,95 +529,61 @@ export type StringFilter = {
   in?: InputMaybe<Array<Scalars['String']>>;
   lt?: InputMaybe<Scalars['String']>;
   lte?: InputMaybe<Scalars['String']>;
+  mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringFilter>;
   notIn?: InputMaybe<Array<Scalars['String']>>;
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type StringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
-};
-
-export type Tag = {
-  __typename?: 'Tag';
+export type Student = {
+  __typename?: 'Student';
+  email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
-  posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
+  photo?: Maybe<ImageFieldOutput>;
+  studentId?: Maybe<Scalars['String']>;
 };
 
-
-export type TagPostsArgs = {
-  orderBy?: Array<PostOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: PostWhereInput;
-};
-
-
-export type TagPostsCountArgs = {
-  where?: PostWhereInput;
-};
-
-export type TagCreateInput = {
+export type StudentCreateInput = {
+  email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForCreateInput>;
+  photo?: InputMaybe<ImageFieldInput>;
+  studentId?: InputMaybe<Scalars['String']>;
 };
 
-export type TagManyRelationFilter = {
-  every?: InputMaybe<TagWhereInput>;
-  none?: InputMaybe<TagWhereInput>;
-  some?: InputMaybe<TagWhereInput>;
-};
-
-export type TagOrderByInput = {
+export type StudentOrderByInput = {
+  email?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   name?: InputMaybe<OrderDirection>;
+  studentId?: InputMaybe<OrderDirection>;
 };
 
-export type TagRelateToManyForCreateInput = {
-  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  create?: InputMaybe<Array<TagCreateInput>>;
+export type StudentUpdateArgs = {
+  data: StudentUpdateInput;
+  where: StudentWhereUniqueInput;
 };
 
-export type TagRelateToManyForUpdateInput = {
-  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  create?: InputMaybe<Array<TagCreateInput>>;
-  disconnect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  set?: InputMaybe<Array<TagWhereUniqueInput>>;
-};
-
-export type TagUpdateArgs = {
-  data: TagUpdateInput;
-  where: TagWhereUniqueInput;
-};
-
-export type TagUpdateInput = {
+export type StudentUpdateInput = {
+  email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForUpdateInput>;
+  photo?: InputMaybe<ImageFieldInput>;
+  studentId?: InputMaybe<Scalars['String']>;
 };
 
-export type TagWhereInput = {
-  AND?: InputMaybe<Array<TagWhereInput>>;
-  NOT?: InputMaybe<Array<TagWhereInput>>;
-  OR?: InputMaybe<Array<TagWhereInput>>;
+export type StudentWhereInput = {
+  AND?: InputMaybe<Array<StudentWhereInput>>;
+  NOT?: InputMaybe<Array<StudentWhereInput>>;
+  OR?: InputMaybe<Array<StudentWhereInput>>;
+  email?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   name?: InputMaybe<StringFilter>;
-  posts?: InputMaybe<PostManyRelationFilter>;
+  studentId?: InputMaybe<StringFilter>;
 };
 
-export type TagWhereUniqueInput = {
+export type StudentWhereUniqueInput = {
+  email?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
+  studentId?: InputMaybe<Scalars['String']>;
 };
 
 export type Todo = {
@@ -751,14 +592,14 @@ export type Todo = {
   due?: Maybe<Scalars['DateTime']>;
   id: Scalars['ID'];
   subject?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<TodoTypeType>;
 };
 
 export type TodoCreateInput = {
   about?: InputMaybe<Scalars['String']>;
   due?: InputMaybe<Scalars['DateTime']>;
   subject?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TodoTypeType>;
 };
 
 export type TodoOrderByInput = {
@@ -767,6 +608,18 @@ export type TodoOrderByInput = {
   id?: InputMaybe<OrderDirection>;
   subject?: InputMaybe<OrderDirection>;
   type?: InputMaybe<OrderDirection>;
+};
+
+export enum TodoTypeType {
+  Ct = 'ct',
+  Lab = 'lab'
+}
+
+export type TodoTypeTypeNullableFilter = {
+  equals?: InputMaybe<TodoTypeType>;
+  in?: InputMaybe<Array<TodoTypeType>>;
+  not?: InputMaybe<TodoTypeTypeNullableFilter>;
+  notIn?: InputMaybe<Array<TodoTypeType>>;
 };
 
 export type TodoUpdateArgs = {
@@ -778,7 +631,7 @@ export type TodoUpdateInput = {
   about?: InputMaybe<Scalars['String']>;
   due?: InputMaybe<Scalars['DateTime']>;
   subject?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TodoTypeType>;
 };
 
 export type TodoWhereInput = {
@@ -789,7 +642,7 @@ export type TodoWhereInput = {
   due?: InputMaybe<DateTimeNullableFilter>;
   id?: InputMaybe<IdFilter>;
   subject?: InputMaybe<StringFilter>;
-  type?: InputMaybe<StringNullableFilter>;
+  type?: InputMaybe<TodoTypeTypeNullableFilter>;
 };
 
 export type TodoWhereUniqueInput = {
@@ -802,21 +655,6 @@ export type User = {
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
   password?: Maybe<PasswordState>;
-  posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
-};
-
-
-export type UserPostsArgs = {
-  orderBy?: Array<PostOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: PostWhereInput;
-};
-
-
-export type UserPostsCountArgs = {
-  where?: PostWhereInput;
 };
 
 export type UserAuthenticationWithPasswordFailure = {
@@ -836,24 +674,12 @@ export type UserCreateInput = {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForCreateInput>;
 };
 
 export type UserOrderByInput = {
   email?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   name?: InputMaybe<OrderDirection>;
-};
-
-export type UserRelateToOneForCreateInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-};
-
-export type UserRelateToOneForUpdateInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  create?: InputMaybe<UserCreateInput>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type UserUpdateArgs = {
@@ -865,7 +691,6 @@ export type UserUpdateInput = {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForUpdateInput>;
 };
 
 export type UserWhereInput = {
@@ -875,7 +700,6 @@ export type UserWhereInput = {
   email?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   name?: InputMaybe<StringFilter>;
-  posts?: InputMaybe<PostManyRelationFilter>;
 };
 
 export type UserWhereUniqueInput = {
@@ -883,22 +707,22 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type NotificationsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AnnouncementsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type NotificationsQuery = { __typename?: 'Query', notifications?: Array<{ __typename?: 'Notification', id: string, title?: string | null, created?: any | null }> | null };
+export type AnnouncementsQuery = { __typename?: 'Query', announcements?: Array<{ __typename?: 'Announcement', id: string, title?: string | null, created?: any | null }> | null };
 
-export type TodoFragFragment = { __typename?: 'Todo', id: string, type?: string | null, subject?: string | null, about?: string | null, due?: any | null };
+export type TodoFragFragment = { __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null };
 
 export type CtQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CtQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: string | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
+export type CtQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
 
 export type LabQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LabQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: string | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
+export type LabQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
 
 export const TodoFragFragmentDoc = gql`
     fragment TodoFrag on Todo {
@@ -909,9 +733,9 @@ export const TodoFragFragmentDoc = gql`
   due
 }
     `;
-export const NotificationsDocument = gql`
-    query Notifications {
-  notifications(where: {}, orderBy: [{created: desc}], skip: 0) {
+export const AnnouncementsDocument = gql`
+    query Announcements {
+  announcements(where: {}, orderBy: [{created: desc}], skip: 0) {
     id
     title
     created
@@ -919,12 +743,12 @@ export const NotificationsDocument = gql`
 }
     `;
 
-export function useNotificationsQuery(options?: Omit<Urql.UseQueryArgs<NotificationsQueryVariables>, 'query'>) {
-  return Urql.useQuery<NotificationsQuery>({ query: NotificationsDocument, ...options });
+export function useAnnouncementsQuery(options?: Omit<Urql.UseQueryArgs<AnnouncementsQueryVariables>, 'query'>) {
+  return Urql.useQuery<AnnouncementsQuery>({ query: AnnouncementsDocument, ...options });
 };
 export const CtDocument = gql`
     query CT {
-  todos(where: {type: {equals: "ct"}}, orderBy: [{due: asc}], skip: 0) {
+  todos(where: {type: {equals: ct}}, orderBy: [{due: asc}], skip: 0) {
     ...TodoFrag
   }
 }
@@ -935,7 +759,7 @@ export function useCtQuery(options?: Omit<Urql.UseQueryArgs<CtQueryVariables>, '
 };
 export const LabDocument = gql`
     query Lab {
-  todos(where: {type: {equals: "lab"}}, orderBy: [{due: asc}], skip: 0) {
+  todos(where: {type: {equals: lab}}, orderBy: [{due: asc}], skip: 0) {
     ...TodoFrag
   }
 }

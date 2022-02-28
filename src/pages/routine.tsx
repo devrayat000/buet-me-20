@@ -21,26 +21,9 @@ const Routine: NextPage = () => {
     )
 
     return (
-        <div className="pt-20">
+        <div className="pt-20 mx-16">
             <section className="isolate m-4">
-                <Tab.Group selectedIndex={tab} onChange={setTab} >
-                    <Tab.List className='flex p-1 space-x-1 bg-blue-600/70 rounded-xl'>
-                        <Tab className={tabClass}>
-                            Section A
-                        </Tab>
-                        <Tab className={tabClass}>
-                            Section B
-                        </Tab>
-                        <Tab className={tabClass}>
-                            Section C
-                        </Tab>
-                    </Tab.List>
-                    <Tab.Panels translate="yes">
-                        <Tab.Panel className={panelClass}><RoutineApp /></Tab.Panel>
-                        <Tab.Panel className={panelClass}>SecB</Tab.Panel>
-                        <Tab.Panel className={panelClass}>SecC</Tab.Panel>
-                    </Tab.Panels>
-                </Tab.Group>
+                <RoutineApp />
             </section>
         </div>
     );

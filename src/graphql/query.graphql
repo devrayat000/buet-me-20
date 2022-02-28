@@ -1,5 +1,5 @@
-query Notifications {
-  notifications(where: {}, orderBy: [{created: desc}], skip: 0) {
+query Announcements {
+  announcements(where: {}, orderBy: [{created: desc}], skip: 0) {
     id
     title
     created
@@ -14,13 +14,13 @@ fragment TodoFrag on Todo {
 }
 
 query CT {
-  todos(where: {type: {equals: "ct"}}, orderBy: [{due: asc}], skip: 0) {
+  todos(where: {type: {equals: ct}}, orderBy: [{due: asc}], skip: 0) {
     ...TodoFrag
   }
 }
 
 query Lab {
-  todos(where: {type: {equals: "lab"}}, orderBy: [{due: asc}], skip: 0) {
+  todos(where: {type: {equals: lab}}, orderBy: [{due: asc}], skip: 0) {
     ...TodoFrag
   }
 }

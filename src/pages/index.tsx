@@ -1,20 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { tsParticles, Engine, Container } from 'tsparticles'
+import { Engine, Container } from 'tsparticles'
 import Particles from 'react-tsparticles'
 
-
-import confetti from '../utils/confetti.json'
-import growing from '../utils/growing.json'
-import images from '../utils/images.json'
-import random from '../utils/random.json'
-import chars from "../utils/chars.json";
 import background from "../utils/background.json";
-
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
 
@@ -39,8 +28,8 @@ const Home: NextPage = () => {
       <section className="grid place-items-center relative isolate">
         <Particles options={{ preset: 'fountain', ...(background as any) }} id="tsparticles" init={particlesInit} loaded={particlesLoaded} />
         <article className="flex flex-col justify-center items-center min-h-screen z-10">
-          <h1>Welcome to Mecha<span className="text-blue-600">Land</span></h1>
-          <h1>BUET ME&apos;20</h1>
+          <h1 className="text-center text-4xl">Welcome to Mecha<span className="text-blue-600">Land</span></h1>
+          <h1 className="text-3xl">BUET ME&apos;20</h1>
         </article>
       </section>
     </div>
