@@ -28,6 +28,21 @@ const Home: NextPage = () => {
             content: 'buet,me,mecha,mechanical,20,xx,mech'
           }
         ]}
+        openGraph={{
+          url: window.location.origin,
+          title: "BUET ME '20 | Section A",
+          description: "A general purpose web platform for information sharing among section A of ME'20",
+          images: [
+            {
+              url: '/images/home-og.png',
+              width: 800,
+              height: 600,
+              alt: 'Home Og Image Alt',
+              type: 'image/png',
+            },
+          ],
+          site_name: "BUET ME '20",
+        }}
       />
 
 
