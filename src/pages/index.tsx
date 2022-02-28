@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           }
         ]}
         openGraph={{
-          url: window.location.origin,
+          url: 'https://buet-me-20-chi.vercel.app/',
           title: "BUET ME '20 | Section A",
           description: "A general purpose web platform for information sharing among section A of ME'20",
           images: [
