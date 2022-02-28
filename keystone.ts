@@ -29,5 +29,11 @@ export default withAuth(
     },
     lists,
     session,
+    server: {
+      port: 3001,
+      cors: {
+        origin: "*",
+      },
+    },
   })
 );
