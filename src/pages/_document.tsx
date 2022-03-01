@@ -16,6 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US" data-theme="corporate">
         <Head>
+          <link rel="manifest" href="/manifest.json" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

@@ -1,25 +1,8 @@
 .navlink {
-    @apply relative p-2 text-gray-300;
-
-    &::before, &::after {
-        content: '';
-        @apply absolute h-0.5 w-full bg-red-800 scale-x-0 transition-transform duration-200;
-    }
-
     &:hover {
-        &::before, &::after {
-            @apply scale-x-100;
-        }
         & > span::before, & > span::after {
             @apply scale-y-100;
         }
-    }
-
-    &::before {
-        @apply left-0 top-0 origin-top-left;
-    }
-    &::after {
-        @apply right-0 bottom-0 origin-bottom-right;
     }
 
     span {

@@ -1,21 +1,12 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import { Engine, Container } from 'tsparticles'
 import Particles from 'react-tsparticles'
+import { NextSeo } from "next-seo";
+import type { NextPage } from "next";
 
 import background from "../utils/background.json";
-import { NextSeo } from "next-seo";
 
 const Home: NextPage = () => {
 
-  const particlesInit = async (main: Engine) => {
-    console.log(main);
-    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  };
-
-  const particlesLoaded = async (container: Container) => {
-    console.log(container);
-  };
 
   return (
     <div>
@@ -47,7 +38,7 @@ const Home: NextPage = () => {
 
 
       <section className="grid place-items-center relative isolate">
-        <Particles options={{ preset: 'fountain', ...(background as any) }} id="tsparticles" init={particlesInit} loaded={particlesLoaded} />
+        <Particles options={{ preset: 'fountain', ...(background as any) }} id="tsparticles" />
         <article className="flex flex-col justify-center items-center min-h-screen z-10">
           <h1 className="text-center text-4xl">Welcome to Mecha<span className="text-blue-600">Land</span></h1>
           <h1 className="text-3xl">BUET ME&apos;20</h1>

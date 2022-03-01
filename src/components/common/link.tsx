@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import clsx from 'clsx'
 
 import classes from '../../styles/link.module.scss'
-import { activeLink, drawerLink } from "../../styles/classes";
+import { activeLink, drawerLink, navlinkClass } from "../../styles/classes";
 import { useStoreActions } from "../../store/hooks";
 
 const CustomLink = forwardRef<
@@ -17,7 +17,7 @@ const CustomLink = forwardRef<
     const { href, as, prefetch, passHref, replace, scroll, shallow,
         activeClassName = activeLink, className, mobile, ...rest } = props;
 
-    const cls = clsx(className, mobile ? drawerLink : classes.navlink, {
+    const cls = clsx(className, mobile ? drawerLink : navlinkClass, {
         [activeClassName]: router.asPath === href || router.asPath === as,
     })
 
@@ -34,9 +34,6 @@ const CustomLink = forwardRef<
 });
 
 CustomLink.displayName = 'CustomLink'
-CustomLink.defaultProps = {
-    mobile: false
-}
 export default CustomLink;
 
 export interface CustomLinkProps extends React.HTMLAttributes<HTMLAnchorElement>, LinkProps {

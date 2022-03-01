@@ -1,17 +1,14 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 import { Provider } from 'urql'
+import { StoreProvider } from 'easy-peasy'
+import Head from 'next/head'
 
 import NavBar from '../components/common/navbar'
 import { client, ssrCache } from '../utils/urql'
-import Drawer from '../components/common/drawer'
 import DrawerWrapper from '../components/common/drawer-wrapper'
-import { StoreProvider } from 'easy-peasy'
 import store from '../store'
-import Head from 'next/head'
-
-
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   if (pageProps.urqlState) {
@@ -24,6 +21,8 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </Head>
       <StoreProvider store={store} >
         <DrawerWrapper>
