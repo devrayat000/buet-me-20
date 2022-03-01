@@ -1,4 +1,3 @@
-import { Engine, Container } from 'tsparticles'
 import Particles from 'react-tsparticles'
 import { NextSeo } from "next-seo";
 import type { NextPage } from "next";

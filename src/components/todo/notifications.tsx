@@ -1,6 +1,17 @@
+import dynamic from 'next/dynamic'
+
 import { discloseBlue, discloseBlueArrow, discloseGreen, discloseGreenArrow, disclosePurple, disclosePurpleArrow } from '../../styles/classes'
 import NotificationPanel from './notification-panel'
-import { AnnouncementItems, CTItems, LabItems } from './item'
+
+const AnnouncementItems = dynamic(() =>
+    import('./item').then(m => m.AnnouncementItems as any)
+)
+const CTItems = dynamic(() =>
+    import('./item').then(m => m.CTItems as any)
+)
+const LabItems = dynamic(() =>
+    import('./item').then(m => m.LabItems as any)
+)
 
 
 const Notifications: React.FC = () => {
