@@ -1,14 +1,15 @@
-import '../styles/globals.scss'
-import type { AppProps } from 'next/app'
-import { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 import { Provider } from 'urql'
 import { StoreProvider } from 'easy-peasy'
 import Head from 'next/head'
+import type { AppProps } from 'next/app'
+import type { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 
 import NavBar from '../components/common/navbar'
 import { client, ssrCache } from '../utils/urql'
 import DrawerWrapper from '../components/common/drawer-wrapper'
 import store from '../store'
+
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   if (pageProps.urqlState) {

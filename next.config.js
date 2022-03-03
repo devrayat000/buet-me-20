@@ -2,6 +2,9 @@ const nextPwa = require('next-pwa')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack(config, {}) {
+    return config
+  }
 }
 
 module.exports = nextPwa({

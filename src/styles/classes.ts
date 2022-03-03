@@ -5,7 +5,7 @@ import classes from './link.module.scss'
 
 export const drawerLink = 'transition-colors text-inherit btn btn-outline rounded-md w-full'
 
-export const activeLink = 'text-red-600'
+export const activeLink = '!text-red-600'
 
 export const disclosePurple = 'text-purple-900 bg-purple-100 hover:bg-purple-200 focus-visible:ring-purple-500'
 export const disclosePurpleArrow = 'text-purple-500'

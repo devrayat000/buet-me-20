@@ -1,26 +1,38 @@
 query Announcements {
-  announcements(where: {}, orderBy: [{created: desc}], skip: 0) {
-    id
-    title
-    created
+  announcements(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        title
+        createdAt
+      }
+    }
   }
-}
-fragment TodoFrag on Todo {
-    id
-    type
-    subject
-    about
-    due
 }
 
 query CT {
-  todos(where: {type: {equals: ct}}, orderBy: [{due: asc}], skip: 0) {
-    ...TodoFrag
+  classTests(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        subject
+        about
+        type
+        occurring
+      }
+    }
   }
 }
 
 query Lab {
-  todos(where: {type: {equals: lab}}, orderBy: [{due: asc}], skip: 0) {
-    ...TodoFrag
+  labReports(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        subject
+        about
+        due
+      }
+    }
   }
 }

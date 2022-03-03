@@ -1,8 +1,8 @@
-schema: http://localhost:3001/api/graphql
+schema: http://localhost:1337/graphql
 documents: 'src/graphql/*.graphql'
 extensions:
   codegen:
-    schema: http://localhost:3001/api/graphql
+    schema: http://localhost:1337/graphql
     documents: 'src/graphql/*.graphql'
 
     generates:

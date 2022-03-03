@@ -1,12 +1,9 @@
-import { NextPage } from "next";
-import { Tab } from '@headlessui/react'
-import { useState } from "react";
+import { NextSeo } from "next-seo";
+import type { GetServerSideProps, NextPage } from "next";
 
 import Notifications from '../components/todo/notifications'
-import { NextSeo } from "next-seo";
 
 const Todo: NextPage = () => {
-    const [tab, setTab] = useState(0)
     return (
         <div className="pt-20">
             <NextSeo

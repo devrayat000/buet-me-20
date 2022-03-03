@@ -19,5 +19,5 @@ export function dueDate(input: any) {
         return `today at ${date.format('hh:mm a')}`
     }
 
-    return date.format('MMM DD, YYYY hh:mm a')
+    return date.format('MMM DD, YYYY [at] hh:mm a')
 }

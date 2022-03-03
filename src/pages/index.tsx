@@ -10,8 +10,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <NextSeo
-        title="BUET ME '20 | Section A"
-        description="A general purpose web platform for information sharing among section A of ME'20"
+        title="BUET ME '20"
+        description="A general purpose web platform for information sharing among ME'20 (currently only providing service for section A)"
         additionalMetaTags={[
           {
             name: 'keywords',
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         openGraph={{
           url: 'https://buet-me-20-chi.vercel.app/',
           title: "BUET ME '20 | Section A",
-          description: "A general purpose web platform for information sharing among section A of ME'20",
+          description: "A general purpose web platform for information sharing among ME'20 (currently only providing service for section A)",
           images: [
             {
               url: '/images/home-og.png',

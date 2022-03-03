@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
@@ -22,723 +23,1032 @@ export type Scalars = {
 
 export type Announcement = {
   __typename?: 'Announcement';
-  created?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export type AnnouncementCreateInput = {
-  created?: InputMaybe<Scalars['DateTime']>;
+export type AnnouncementEntity = {
+  __typename?: 'AnnouncementEntity';
+  attributes?: Maybe<Announcement>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type AnnouncementEntityResponse = {
+  __typename?: 'AnnouncementEntityResponse';
+  data?: Maybe<AnnouncementEntity>;
+};
+
+export type AnnouncementEntityResponseCollection = {
+  __typename?: 'AnnouncementEntityResponseCollection';
+  data: Array<AnnouncementEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type AnnouncementFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<AnnouncementFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<AnnouncementFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<AnnouncementFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type AnnouncementInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type AnnouncementOrderByInput = {
-  created?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  title?: InputMaybe<OrderDirection>;
+export type BooleanFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  contains?: InputMaybe<Scalars['Boolean']>;
+  containsi?: InputMaybe<Scalars['Boolean']>;
+  endsWith?: InputMaybe<Scalars['Boolean']>;
+  eq?: InputMaybe<Scalars['Boolean']>;
+  gt?: InputMaybe<Scalars['Boolean']>;
+  gte?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  lt?: InputMaybe<Scalars['Boolean']>;
+  lte?: InputMaybe<Scalars['Boolean']>;
+  ne?: InputMaybe<Scalars['Boolean']>;
+  not?: InputMaybe<BooleanFilterInput>;
+  notContains?: InputMaybe<Scalars['Boolean']>;
+  notContainsi?: InputMaybe<Scalars['Boolean']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type AnnouncementUpdateArgs = {
-  data: AnnouncementUpdateInput;
-  where: AnnouncementWhereUniqueInput;
+export type ClassTest = {
+  __typename?: 'ClassTest';
+  about: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  occurring: Scalars['DateTime'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  subject: Scalars['String'];
+  type: CtType;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export type AnnouncementUpdateInput = {
-  created?: InputMaybe<Scalars['DateTime']>;
-  title?: InputMaybe<Scalars['String']>;
+export type ClassTestEntity = {
+  __typename?: 'ClassTestEntity';
+  attributes?: Maybe<ClassTest>;
+  id?: Maybe<Scalars['ID']>;
 };
 
-export type AnnouncementWhereInput = {
-  AND?: InputMaybe<Array<AnnouncementWhereInput>>;
-  NOT?: InputMaybe<Array<AnnouncementWhereInput>>;
-  OR?: InputMaybe<Array<AnnouncementWhereInput>>;
-  created?: InputMaybe<DateTimeNullableFilter>;
-  id?: InputMaybe<IdFilter>;
-  title?: InputMaybe<StringFilter>;
+export type ClassTestEntityResponse = {
+  __typename?: 'ClassTestEntityResponse';
+  data?: Maybe<ClassTestEntity>;
 };
 
-export type AnnouncementWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+export type ClassTestEntityResponseCollection = {
+  __typename?: 'ClassTestEntityResponseCollection';
+  data: Array<ClassTestEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type AuthenticatedItem = User;
-
-export type CloudImageFieldOutput = ImageFieldOutput & {
-  __typename?: 'CloudImageFieldOutput';
-  extension: ImageExtension;
-  filesize: Scalars['Int'];
-  height: Scalars['Int'];
-  id: Scalars['ID'];
-  ref: Scalars['String'];
-  url: Scalars['String'];
-  width: Scalars['Int'];
+export type ClassTestFiltersInput = {
+  about?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ClassTestFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<ClassTestFiltersInput>;
+  occurring?: InputMaybe<DateTimeFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ClassTestFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  subject?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type CreateInitialUserInput = {
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+export type ClassTestInput = {
+  about?: InputMaybe<Scalars['String']>;
+  occurring?: InputMaybe<Scalars['DateTime']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  subject?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<CtType>;
 };
 
-export type DateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
+export enum CtType {
+  Mcq = 'mcq',
+  Written = 'written'
+}
+
+export type DateTimeFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  contains?: InputMaybe<Scalars['DateTime']>;
+  containsi?: InputMaybe<Scalars['DateTime']>;
+  endsWith?: InputMaybe<Scalars['DateTime']>;
+  eq?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
   gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   lt?: InputMaybe<Scalars['DateTime']>;
   lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<DateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  ne?: InputMaybe<Scalars['DateTime']>;
+  not?: InputMaybe<DateTimeFilterInput>;
+  notContains?: InputMaybe<Scalars['DateTime']>;
+  notContainsi?: InputMaybe<Scalars['DateTime']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  startsWith?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type IdFilter = {
-  equals?: InputMaybe<Scalars['ID']>;
+export type FileInfoInput = {
+  alternativeText?: InputMaybe<Scalars['String']>;
+  caption?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type FloatFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  contains?: InputMaybe<Scalars['Float']>;
+  containsi?: InputMaybe<Scalars['Float']>;
+  endsWith?: InputMaybe<Scalars['Float']>;
+  eq?: InputMaybe<Scalars['Float']>;
+  gt?: InputMaybe<Scalars['Float']>;
+  gte?: InputMaybe<Scalars['Float']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  lt?: InputMaybe<Scalars['Float']>;
+  lte?: InputMaybe<Scalars['Float']>;
+  ne?: InputMaybe<Scalars['Float']>;
+  not?: InputMaybe<FloatFilterInput>;
+  notContains?: InputMaybe<Scalars['Float']>;
+  notContainsi?: InputMaybe<Scalars['Float']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  startsWith?: InputMaybe<Scalars['Float']>;
+};
+
+export type GenericMorph = Announcement | ClassTest | I18NLocale | LabReport | Routine | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type I18NLocale = {
+  __typename?: 'I18NLocale';
+  code?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type I18NLocaleEntity = {
+  __typename?: 'I18NLocaleEntity';
+  attributes?: Maybe<I18NLocale>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type I18NLocaleEntityResponse = {
+  __typename?: 'I18NLocaleEntityResponse';
+  data?: Maybe<I18NLocaleEntity>;
+};
+
+export type I18NLocaleEntityResponseCollection = {
+  __typename?: 'I18NLocaleEntityResponseCollection';
+  data: Array<I18NLocaleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type I18NLocaleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  code?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<I18NLocaleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type IdFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  contains?: InputMaybe<Scalars['ID']>;
+  containsi?: InputMaybe<Scalars['ID']>;
+  endsWith?: InputMaybe<Scalars['ID']>;
+  eq?: InputMaybe<Scalars['ID']>;
   gt?: InputMaybe<Scalars['ID']>;
   gte?: InputMaybe<Scalars['ID']>;
-  in?: InputMaybe<Array<Scalars['ID']>>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   lt?: InputMaybe<Scalars['ID']>;
   lte?: InputMaybe<Scalars['ID']>;
-  not?: InputMaybe<IdFilter>;
-  notIn?: InputMaybe<Array<Scalars['ID']>>;
+  ne?: InputMaybe<Scalars['ID']>;
+  not?: InputMaybe<IdFilterInput>;
+  notContains?: InputMaybe<Scalars['ID']>;
+  notContainsi?: InputMaybe<Scalars['ID']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  startsWith?: InputMaybe<Scalars['ID']>;
 };
 
-export enum ImageExtension {
-  Gif = 'gif',
-  Jpg = 'jpg',
-  Png = 'png',
-  Webp = 'webp'
-}
-
-export type ImageFieldInput = {
-  ref?: InputMaybe<Scalars['String']>;
-  upload?: InputMaybe<Scalars['Upload']>;
+export type IntFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  contains?: InputMaybe<Scalars['Int']>;
+  containsi?: InputMaybe<Scalars['Int']>;
+  endsWith?: InputMaybe<Scalars['Int']>;
+  eq?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  ne?: InputMaybe<Scalars['Int']>;
+  not?: InputMaybe<IntFilterInput>;
+  notContains?: InputMaybe<Scalars['Int']>;
+  notContainsi?: InputMaybe<Scalars['Int']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  startsWith?: InputMaybe<Scalars['Int']>;
 };
 
-export type ImageFieldOutput = {
-  extension: ImageExtension;
-  filesize: Scalars['Int'];
-  height: Scalars['Int'];
-  id: Scalars['ID'];
-  ref: Scalars['String'];
-  url: Scalars['String'];
-  width: Scalars['Int'];
+export type JsonFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  contains?: InputMaybe<Scalars['JSON']>;
+  containsi?: InputMaybe<Scalars['JSON']>;
+  endsWith?: InputMaybe<Scalars['JSON']>;
+  eq?: InputMaybe<Scalars['JSON']>;
+  gt?: InputMaybe<Scalars['JSON']>;
+  gte?: InputMaybe<Scalars['JSON']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  lt?: InputMaybe<Scalars['JSON']>;
+  lte?: InputMaybe<Scalars['JSON']>;
+  ne?: InputMaybe<Scalars['JSON']>;
+  not?: InputMaybe<JsonFilterInput>;
+  notContains?: InputMaybe<Scalars['JSON']>;
+  notContainsi?: InputMaybe<Scalars['JSON']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  startsWith?: InputMaybe<Scalars['JSON']>;
 };
 
-export type KeystoneAdminMeta = {
-  __typename?: 'KeystoneAdminMeta';
-  enableSessionItem: Scalars['Boolean'];
-  enableSignout: Scalars['Boolean'];
-  list?: Maybe<KeystoneAdminUiListMeta>;
-  lists: Array<KeystoneAdminUiListMeta>;
+export type LabReport = {
+  __typename?: 'LabReport';
+  about: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  due: Scalars['DateTime'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  subject: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-
-export type KeystoneAdminMetaListArgs = {
-  key: Scalars['String'];
+export type LabReportEntity = {
+  __typename?: 'LabReportEntity';
+  attributes?: Maybe<LabReport>;
+  id?: Maybe<Scalars['ID']>;
 };
 
-export type KeystoneAdminUiFieldMeta = {
-  __typename?: 'KeystoneAdminUIFieldMeta';
-  createView: KeystoneAdminUiFieldMetaCreateView;
-  customViewsIndex?: Maybe<Scalars['Int']>;
-  fieldMeta?: Maybe<Scalars['JSON']>;
-  isFilterable: Scalars['Boolean'];
-  isOrderable: Scalars['Boolean'];
-  itemView?: Maybe<KeystoneAdminUiFieldMetaItemView>;
-  label: Scalars['String'];
-  listView: KeystoneAdminUiFieldMetaListView;
-  path: Scalars['String'];
-  search?: Maybe<QueryMode>;
-  viewsIndex: Scalars['Int'];
+export type LabReportEntityResponse = {
+  __typename?: 'LabReportEntityResponse';
+  data?: Maybe<LabReportEntity>;
 };
 
-
-export type KeystoneAdminUiFieldMetaItemViewArgs = {
-  id?: InputMaybe<Scalars['ID']>;
+export type LabReportEntityResponseCollection = {
+  __typename?: 'LabReportEntityResponseCollection';
+  data: Array<LabReportEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type KeystoneAdminUiFieldMetaCreateView = {
-  __typename?: 'KeystoneAdminUIFieldMetaCreateView';
-  fieldMode: KeystoneAdminUiFieldMetaCreateViewFieldMode;
+export type LabReportFiltersInput = {
+  about?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<LabReportFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  due?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<LabReportFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<LabReportFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  subject?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export enum KeystoneAdminUiFieldMetaCreateViewFieldMode {
-  Edit = 'edit',
-  Hidden = 'hidden'
-}
-
-export type KeystoneAdminUiFieldMetaItemView = {
-  __typename?: 'KeystoneAdminUIFieldMetaItemView';
-  fieldMode?: Maybe<KeystoneAdminUiFieldMetaItemViewFieldMode>;
-};
-
-export enum KeystoneAdminUiFieldMetaItemViewFieldMode {
-  Edit = 'edit',
-  Hidden = 'hidden',
-  Read = 'read'
-}
-
-export type KeystoneAdminUiFieldMetaListView = {
-  __typename?: 'KeystoneAdminUIFieldMetaListView';
-  fieldMode: KeystoneAdminUiFieldMetaListViewFieldMode;
-};
-
-export enum KeystoneAdminUiFieldMetaListViewFieldMode {
-  Hidden = 'hidden',
-  Read = 'read'
-}
-
-export type KeystoneAdminUiListMeta = {
-  __typename?: 'KeystoneAdminUIListMeta';
-  description?: Maybe<Scalars['String']>;
-  fields: Array<KeystoneAdminUiFieldMeta>;
-  hideCreate: Scalars['Boolean'];
-  hideDelete: Scalars['Boolean'];
-  initialColumns: Array<Scalars['String']>;
-  initialSort?: Maybe<KeystoneAdminUiSort>;
-  isHidden: Scalars['Boolean'];
-  itemQueryName: Scalars['String'];
-  key: Scalars['String'];
-  label: Scalars['String'];
-  labelField: Scalars['String'];
-  listQueryName: Scalars['String'];
-  pageSize: Scalars['Int'];
-  path: Scalars['String'];
-  plural: Scalars['String'];
-  singular: Scalars['String'];
-};
-
-export type KeystoneAdminUiSort = {
-  __typename?: 'KeystoneAdminUISort';
-  direction: KeystoneAdminUiSortDirection;
-  field: Scalars['String'];
-};
-
-export enum KeystoneAdminUiSortDirection {
-  Asc = 'ASC',
-  Desc = 'DESC'
-}
-
-export type KeystoneMeta = {
-  __typename?: 'KeystoneMeta';
-  adminMeta: KeystoneAdminMeta;
-};
-
-export type LocalImageFieldOutput = ImageFieldOutput & {
-  __typename?: 'LocalImageFieldOutput';
-  extension: ImageExtension;
-  filesize: Scalars['Int'];
-  height: Scalars['Int'];
-  id: Scalars['ID'];
-  ref: Scalars['String'];
-  url: Scalars['String'];
-  width: Scalars['Int'];
+export type LabReportInput = {
+  about?: InputMaybe<Scalars['String']>;
+  due?: InputMaybe<Scalars['DateTime']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  subject?: InputMaybe<Scalars['String']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  authenticateUserWithPassword?: Maybe<UserAuthenticationWithPasswordResult>;
-  createAnnouncement?: Maybe<Announcement>;
-  createAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
-  createInitialUser: UserAuthenticationWithPasswordSuccess;
-  createStudent?: Maybe<Student>;
-  createStudents?: Maybe<Array<Maybe<Student>>>;
-  createTodo?: Maybe<Todo>;
-  createTodos?: Maybe<Array<Maybe<Todo>>>;
-  createUser?: Maybe<User>;
-  createUsers?: Maybe<Array<Maybe<User>>>;
-  deleteAnnouncement?: Maybe<Announcement>;
-  deleteAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
-  deleteStudent?: Maybe<Student>;
-  deleteStudents?: Maybe<Array<Maybe<Student>>>;
-  deleteTodo?: Maybe<Todo>;
-  deleteTodos?: Maybe<Array<Maybe<Todo>>>;
-  deleteUser?: Maybe<User>;
-  deleteUsers?: Maybe<Array<Maybe<User>>>;
-  endSession: Scalars['Boolean'];
-  updateAnnouncement?: Maybe<Announcement>;
-  updateAnnouncements?: Maybe<Array<Maybe<Announcement>>>;
-  updateStudent?: Maybe<Student>;
-  updateStudents?: Maybe<Array<Maybe<Student>>>;
-  updateTodo?: Maybe<Todo>;
-  updateTodos?: Maybe<Array<Maybe<Todo>>>;
-  updateUser?: Maybe<User>;
-  updateUsers?: Maybe<Array<Maybe<User>>>;
-};
-
-
-export type MutationAuthenticateUserWithPasswordArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+  createAnnouncement?: Maybe<AnnouncementEntityResponse>;
+  createClassTest?: Maybe<ClassTestEntityResponse>;
+  createLabReport?: Maybe<LabReportEntityResponse>;
+  createUploadFile?: Maybe<UploadFileEntityResponse>;
+  /** Create a new role */
+  createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
+  /** Create a new user */
+  createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteAnnouncement?: Maybe<AnnouncementEntityResponse>;
+  deleteClassTest?: Maybe<ClassTestEntityResponse>;
+  deleteLabReport?: Maybe<LabReportEntityResponse>;
+  deleteRoutine?: Maybe<RoutineEntityResponse>;
+  deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  /** Delete an existing role */
+  deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
+  /** Update an existing user */
+  deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  /** Confirm an email users email address */
+  emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+  /** Request a reset password token */
+  forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
+  login: UsersPermissionsLoginPayload;
+  multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
+  /** Register a user */
+  register: UsersPermissionsLoginPayload;
+  removeFile?: Maybe<UploadFileEntityResponse>;
+  /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
+  resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAnnouncement?: Maybe<AnnouncementEntityResponse>;
+  updateClassTest?: Maybe<ClassTestEntityResponse>;
+  updateFileInfo: UploadFileEntityResponse;
+  updateLabReport?: Maybe<LabReportEntityResponse>;
+  updateRoutine?: Maybe<RoutineEntityResponse>;
+  updateUploadFile?: Maybe<UploadFileEntityResponse>;
+  /** Update an existing role */
+  updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
+  /** Update an existing user */
+  updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  upload: UploadFileEntityResponse;
 };
 
 
 export type MutationCreateAnnouncementArgs = {
-  data: AnnouncementCreateInput;
+  data: AnnouncementInput;
 };
 
 
-export type MutationCreateAnnouncementsArgs = {
-  data: Array<AnnouncementCreateInput>;
+export type MutationCreateClassTestArgs = {
+  data: ClassTestInput;
 };
 
 
-export type MutationCreateInitialUserArgs = {
-  data: CreateInitialUserInput;
+export type MutationCreateLabReportArgs = {
+  data: LabReportInput;
 };
 
 
-export type MutationCreateStudentArgs = {
-  data: StudentCreateInput;
+export type MutationCreateUploadFileArgs = {
+  data: UploadFileInput;
 };
 
 
-export type MutationCreateStudentsArgs = {
-  data: Array<StudentCreateInput>;
+export type MutationCreateUsersPermissionsRoleArgs = {
+  data: UsersPermissionsRoleInput;
 };
 
 
-export type MutationCreateTodoArgs = {
-  data: TodoCreateInput;
-};
-
-
-export type MutationCreateTodosArgs = {
-  data: Array<TodoCreateInput>;
-};
-
-
-export type MutationCreateUserArgs = {
-  data: UserCreateInput;
-};
-
-
-export type MutationCreateUsersArgs = {
-  data: Array<UserCreateInput>;
+export type MutationCreateUsersPermissionsUserArgs = {
+  data: UsersPermissionsUserInput;
 };
 
 
 export type MutationDeleteAnnouncementArgs = {
-  where: AnnouncementWhereUniqueInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteAnnouncementsArgs = {
-  where: Array<AnnouncementWhereUniqueInput>;
+export type MutationDeleteClassTestArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteStudentArgs = {
-  where: StudentWhereUniqueInput;
+export type MutationDeleteLabReportArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteStudentsArgs = {
-  where: Array<StudentWhereUniqueInput>;
+export type MutationDeleteUploadFileArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteTodoArgs = {
-  where: TodoWhereUniqueInput;
+export type MutationDeleteUsersPermissionsRoleArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteTodosArgs = {
-  where: Array<TodoWhereUniqueInput>;
+export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID'];
 };
 
 
-export type MutationDeleteUserArgs = {
-  where: UserWhereUniqueInput;
+export type MutationEmailConfirmationArgs = {
+  confirmation: Scalars['String'];
 };
 
 
-export type MutationDeleteUsersArgs = {
-  where: Array<UserWhereUniqueInput>;
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationLoginArgs = {
+  input: UsersPermissionsLoginInput;
+};
+
+
+export type MutationMultipleUploadArgs = {
+  field?: InputMaybe<Scalars['String']>;
+  files: Array<InputMaybe<Scalars['Upload']>>;
+  ref?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type MutationRegisterArgs = {
+  input: UsersPermissionsRegisterInput;
+};
+
+
+export type MutationRemoveFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationResetPasswordArgs = {
+  code: Scalars['String'];
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
 };
 
 
 export type MutationUpdateAnnouncementArgs = {
-  data: AnnouncementUpdateInput;
-  where: AnnouncementWhereUniqueInput;
+  data: AnnouncementInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationUpdateAnnouncementsArgs = {
-  data: Array<AnnouncementUpdateArgs>;
+export type MutationUpdateClassTestArgs = {
+  data: ClassTestInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationUpdateStudentArgs = {
-  data: StudentUpdateInput;
-  where: StudentWhereUniqueInput;
+export type MutationUpdateFileInfoArgs = {
+  id: Scalars['ID'];
+  info?: InputMaybe<FileInfoInput>;
 };
 
 
-export type MutationUpdateStudentsArgs = {
-  data: Array<StudentUpdateArgs>;
+export type MutationUpdateLabReportArgs = {
+  data: LabReportInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationUpdateTodoArgs = {
-  data: TodoUpdateInput;
-  where: TodoWhereUniqueInput;
+export type MutationUpdateRoutineArgs = {
+  data: RoutineInput;
 };
 
 
-export type MutationUpdateTodosArgs = {
-  data: Array<TodoUpdateArgs>;
+export type MutationUpdateUploadFileArgs = {
+  data: UploadFileInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationUpdateUserArgs = {
-  data: UserUpdateInput;
-  where: UserWhereUniqueInput;
+export type MutationUpdateUsersPermissionsRoleArgs = {
+  data: UsersPermissionsRoleInput;
+  id: Scalars['ID'];
 };
 
 
-export type MutationUpdateUsersArgs = {
-  data: Array<UserUpdateArgs>;
+export type MutationUpdateUsersPermissionsUserArgs = {
+  data: UsersPermissionsUserInput;
+  id: Scalars['ID'];
 };
 
-export type NestedStringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+
+export type MutationUploadArgs = {
+  field?: InputMaybe<Scalars['String']>;
+  file: Scalars['Upload'];
+  info?: InputMaybe<FileInfoInput>;
+  ref?: InputMaybe<Scalars['String']>;
+  refId?: InputMaybe<Scalars['ID']>;
 };
 
-export enum OrderDirection {
-  Asc = 'asc',
-  Desc = 'desc'
+export type Pagination = {
+  __typename?: 'Pagination';
+  page: Scalars['Int'];
+  pageCount: Scalars['Int'];
+  pageSize: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PaginationArg = {
+  limit?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  pageSize?: InputMaybe<Scalars['Int']>;
+  start?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PublicationState {
+  Live = 'LIVE',
+  Preview = 'PREVIEW'
 }
-
-export type PasswordState = {
-  __typename?: 'PasswordState';
-  isSet: Scalars['Boolean'];
-};
 
 export type Query = {
   __typename?: 'Query';
-  announcement?: Maybe<Announcement>;
-  announcements?: Maybe<Array<Announcement>>;
-  announcementsCount?: Maybe<Scalars['Int']>;
-  authenticatedItem?: Maybe<AuthenticatedItem>;
-  keystone: KeystoneMeta;
-  student?: Maybe<Student>;
-  students?: Maybe<Array<Student>>;
-  studentsCount?: Maybe<Scalars['Int']>;
-  todo?: Maybe<Todo>;
-  todos?: Maybe<Array<Todo>>;
-  todosCount?: Maybe<Scalars['Int']>;
-  user?: Maybe<User>;
-  users?: Maybe<Array<User>>;
-  usersCount?: Maybe<Scalars['Int']>;
+  announcement?: Maybe<AnnouncementEntityResponse>;
+  announcements?: Maybe<AnnouncementEntityResponseCollection>;
+  classTest?: Maybe<ClassTestEntityResponse>;
+  classTests?: Maybe<ClassTestEntityResponseCollection>;
+  i18NLocale?: Maybe<I18NLocaleEntityResponse>;
+  i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  labReport?: Maybe<LabReportEntityResponse>;
+  labReports?: Maybe<LabReportEntityResponseCollection>;
+  me?: Maybe<UsersPermissionsMe>;
+  routine?: Maybe<RoutineEntityResponse>;
+  uploadFile?: Maybe<UploadFileEntityResponse>;
+  uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
+  usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
+  usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
+  usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
 
 export type QueryAnnouncementArgs = {
-  where: AnnouncementWhereUniqueInput;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryAnnouncementsArgs = {
-  orderBy?: Array<AnnouncementOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: AnnouncementWhereInput;
+  filters?: InputMaybe<AnnouncementFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryAnnouncementsCountArgs = {
-  where?: AnnouncementWhereInput;
+export type QueryClassTestArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryStudentArgs = {
-  where: StudentWhereUniqueInput;
+export type QueryClassTestsArgs = {
+  filters?: InputMaybe<ClassTestFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryStudentsArgs = {
-  orderBy?: Array<StudentOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: StudentWhereInput;
+export type QueryI18NLocaleArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryStudentsCountArgs = {
-  where?: StudentWhereInput;
+export type QueryI18NLocalesArgs = {
+  filters?: InputMaybe<I18NLocaleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryTodoArgs = {
-  where: TodoWhereUniqueInput;
+export type QueryLabReportArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryTodosArgs = {
-  orderBy?: Array<TodoOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: TodoWhereInput;
+export type QueryLabReportsArgs = {
+  filters?: InputMaybe<LabReportFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryTodosCountArgs = {
-  where?: TodoWhereInput;
+export type QueryRoutineArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
-export type QueryUserArgs = {
-  where: UserWhereUniqueInput;
+export type QueryUploadFileArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryUsersArgs = {
-  orderBy?: Array<UserOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: UserWhereInput;
+export type QueryUploadFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type QueryUsersCountArgs = {
-  where?: UserWhereInput;
+export type QueryUsersPermissionsRoleArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
-export enum QueryMode {
-  Default = 'default',
-  Insensitive = 'insensitive'
-}
 
-export type StringFilter = {
+export type QueryUsersPermissionsRolesArgs = {
+  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryUsersPermissionsUserArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryUsersPermissionsUsersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ResponseCollectionMeta = {
+  __typename?: 'ResponseCollectionMeta';
+  pagination: Pagination;
+};
+
+export type Routine = {
+  __typename?: 'Routine';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  file: UploadFileEntityResponse;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  term: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type RoutineEntity = {
+  __typename?: 'RoutineEntity';
+  attributes?: Maybe<Routine>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type RoutineEntityResponse = {
+  __typename?: 'RoutineEntityResponse';
+  data?: Maybe<RoutineEntity>;
+};
+
+export type RoutineInput = {
+  file?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  term?: InputMaybe<Scalars['String']>;
+};
+
+export type StringFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   contains?: InputMaybe<Scalars['String']>;
+  containsi?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
   gt?: InputMaybe<Scalars['String']>;
   gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   lt?: InputMaybe<Scalars['String']>;
   lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
+  ne?: InputMaybe<Scalars['String']>;
+  not?: InputMaybe<StringFilterInput>;
+  notContains?: InputMaybe<Scalars['String']>;
+  notContainsi?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   startsWith?: InputMaybe<Scalars['String']>;
 };
 
-export type Student = {
-  __typename?: 'Student';
+export type UploadFile = {
+  __typename?: 'UploadFile';
+  alternativeText?: Maybe<Scalars['String']>;
+  caption?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  ext?: Maybe<Scalars['String']>;
+  formats?: Maybe<Scalars['JSON']>;
+  hash: Scalars['String'];
+  height?: Maybe<Scalars['Int']>;
+  mime: Scalars['String'];
+  name: Scalars['String'];
+  previewUrl?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
+  provider_metadata?: Maybe<Scalars['JSON']>;
+  related?: Maybe<Array<Maybe<GenericMorph>>>;
+  size: Scalars['Float'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+  width?: Maybe<Scalars['Int']>;
+};
+
+export type UploadFileEntity = {
+  __typename?: 'UploadFileEntity';
+  attributes?: Maybe<UploadFile>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UploadFileEntityResponse = {
+  __typename?: 'UploadFileEntityResponse';
+  data?: Maybe<UploadFileEntity>;
+};
+
+export type UploadFileEntityResponseCollection = {
+  __typename?: 'UploadFileEntityResponseCollection';
+  data: Array<UploadFileEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFileFiltersInput = {
+  alternativeText?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  caption?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  ext?: InputMaybe<StringFilterInput>;
+  formats?: InputMaybe<JsonFilterInput>;
+  hash?: InputMaybe<StringFilterInput>;
+  height?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  mime?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  previewUrl?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  provider_metadata?: InputMaybe<JsonFilterInput>;
+  size?: InputMaybe<FloatFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+};
+
+export type UploadFileInput = {
+  alternativeText?: InputMaybe<Scalars['String']>;
+  caption?: InputMaybe<Scalars['String']>;
+  ext?: InputMaybe<Scalars['String']>;
+  formats?: InputMaybe<Scalars['JSON']>;
+  hash?: InputMaybe<Scalars['String']>;
+  height?: InputMaybe<Scalars['Int']>;
+  mime?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  previewUrl?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  provider_metadata?: InputMaybe<Scalars['JSON']>;
+  size?: InputMaybe<Scalars['Float']>;
+  url?: InputMaybe<Scalars['String']>;
+  width?: InputMaybe<Scalars['Int']>;
+};
+
+export type UsersPermissionsCreateRolePayload = {
+  __typename?: 'UsersPermissionsCreateRolePayload';
+  ok: Scalars['Boolean'];
+};
+
+export type UsersPermissionsDeleteRolePayload = {
+  __typename?: 'UsersPermissionsDeleteRolePayload';
+  ok: Scalars['Boolean'];
+};
+
+export type UsersPermissionsLoginInput = {
+  identifier: Scalars['String'];
+  password: Scalars['String'];
+  provider?: Scalars['String'];
+};
+
+export type UsersPermissionsLoginPayload = {
+  __typename?: 'UsersPermissionsLoginPayload';
+  jwt?: Maybe<Scalars['String']>;
+  user: UsersPermissionsMe;
+};
+
+export type UsersPermissionsMe = {
+  __typename?: 'UsersPermissionsMe';
+  blocked?: Maybe<Scalars['Boolean']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
   email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  photo?: Maybe<ImageFieldOutput>;
-  studentId?: Maybe<Scalars['String']>;
+  role?: Maybe<UsersPermissionsMeRole>;
+  username: Scalars['String'];
 };
 
-export type StudentCreateInput = {
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  photo?: InputMaybe<ImageFieldInput>;
-  studentId?: InputMaybe<Scalars['String']>;
-};
-
-export type StudentOrderByInput = {
-  email?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  name?: InputMaybe<OrderDirection>;
-  studentId?: InputMaybe<OrderDirection>;
-};
-
-export type StudentUpdateArgs = {
-  data: StudentUpdateInput;
-  where: StudentWhereUniqueInput;
-};
-
-export type StudentUpdateInput = {
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  photo?: InputMaybe<ImageFieldInput>;
-  studentId?: InputMaybe<Scalars['String']>;
-};
-
-export type StudentWhereInput = {
-  AND?: InputMaybe<Array<StudentWhereInput>>;
-  NOT?: InputMaybe<Array<StudentWhereInput>>;
-  OR?: InputMaybe<Array<StudentWhereInput>>;
-  email?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IdFilter>;
-  name?: InputMaybe<StringFilter>;
-  studentId?: InputMaybe<StringFilter>;
-};
-
-export type StudentWhereUniqueInput = {
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  studentId?: InputMaybe<Scalars['String']>;
-};
-
-export type Todo = {
-  __typename?: 'Todo';
-  about?: Maybe<Scalars['String']>;
-  due?: Maybe<Scalars['DateTime']>;
+export type UsersPermissionsMeRole = {
+  __typename?: 'UsersPermissionsMeRole';
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  subject?: Maybe<Scalars['String']>;
-  type?: Maybe<TodoTypeType>;
+  name: Scalars['String'];
+  type?: Maybe<Scalars['String']>;
 };
 
-export type TodoCreateInput = {
-  about?: InputMaybe<Scalars['String']>;
-  due?: InputMaybe<Scalars['DateTime']>;
-  subject?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<TodoTypeType>;
+export type UsersPermissionsPasswordPayload = {
+  __typename?: 'UsersPermissionsPasswordPayload';
+  ok: Scalars['Boolean'];
 };
 
-export type TodoOrderByInput = {
-  about?: InputMaybe<OrderDirection>;
-  due?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  subject?: InputMaybe<OrderDirection>;
-  type?: InputMaybe<OrderDirection>;
+export type UsersPermissionsPermission = {
+  __typename?: 'UsersPermissionsPermission';
+  action: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export enum TodoTypeType {
-  Ct = 'ct',
-  Lab = 'lab'
-}
-
-export type TodoTypeTypeNullableFilter = {
-  equals?: InputMaybe<TodoTypeType>;
-  in?: InputMaybe<Array<TodoTypeType>>;
-  not?: InputMaybe<TodoTypeTypeNullableFilter>;
-  notIn?: InputMaybe<Array<TodoTypeType>>;
+export type UsersPermissionsPermissionEntity = {
+  __typename?: 'UsersPermissionsPermissionEntity';
+  attributes?: Maybe<UsersPermissionsPermission>;
+  id?: Maybe<Scalars['ID']>;
 };
 
-export type TodoUpdateArgs = {
-  data: TodoUpdateInput;
-  where: TodoWhereUniqueInput;
+export type UsersPermissionsPermissionFiltersInput = {
+  action?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type TodoUpdateInput = {
-  about?: InputMaybe<Scalars['String']>;
-  due?: InputMaybe<Scalars['DateTime']>;
-  subject?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<TodoTypeType>;
+export type UsersPermissionsPermissionRelationResponseCollection = {
+  __typename?: 'UsersPermissionsPermissionRelationResponseCollection';
+  data: Array<UsersPermissionsPermissionEntity>;
 };
 
-export type TodoWhereInput = {
-  AND?: InputMaybe<Array<TodoWhereInput>>;
-  NOT?: InputMaybe<Array<TodoWhereInput>>;
-  OR?: InputMaybe<Array<TodoWhereInput>>;
-  about?: InputMaybe<StringFilter>;
-  due?: InputMaybe<DateTimeNullableFilter>;
-  id?: InputMaybe<IdFilter>;
-  subject?: InputMaybe<StringFilter>;
-  type?: InputMaybe<TodoTypeTypeNullableFilter>;
+export type UsersPermissionsRegisterInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+  username: Scalars['String'];
 };
 
-export type TodoWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+export type UsersPermissionsRole = {
+  __typename?: 'UsersPermissionsRole';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  permissions?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
+  type?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
-export type User = {
-  __typename?: 'User';
-  email?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  password?: Maybe<PasswordState>;
+
+export type UsersPermissionsRolePermissionsArgs = {
+  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type UserAuthenticationWithPasswordFailure = {
-  __typename?: 'UserAuthenticationWithPasswordFailure';
-  message: Scalars['String'];
+
+export type UsersPermissionsRoleUsersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type UserAuthenticationWithPasswordResult = UserAuthenticationWithPasswordFailure | UserAuthenticationWithPasswordSuccess;
-
-export type UserAuthenticationWithPasswordSuccess = {
-  __typename?: 'UserAuthenticationWithPasswordSuccess';
-  item: User;
-  sessionToken: Scalars['String'];
+export type UsersPermissionsRoleEntity = {
+  __typename?: 'UsersPermissionsRoleEntity';
+  attributes?: Maybe<UsersPermissionsRole>;
+  id?: Maybe<Scalars['ID']>;
 };
 
-export type UserCreateInput = {
-  email?: InputMaybe<Scalars['String']>;
+export type UsersPermissionsRoleEntityResponse = {
+  __typename?: 'UsersPermissionsRoleEntityResponse';
+  data?: Maybe<UsersPermissionsRoleEntity>;
+};
+
+export type UsersPermissionsRoleEntityResponseCollection = {
+  __typename?: 'UsersPermissionsRoleEntityResponseCollection';
+  data: Array<UsersPermissionsRoleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UsersPermissionsRoleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  users?: InputMaybe<UsersPermissionsUserFiltersInput>;
+};
+
+export type UsersPermissionsRoleInput = {
+  description?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+  permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  type?: InputMaybe<Scalars['String']>;
+  users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
-export type UserOrderByInput = {
-  email?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  name?: InputMaybe<OrderDirection>;
+export type UsersPermissionsUpdateRolePayload = {
+  __typename?: 'UsersPermissionsUpdateRolePayload';
+  ok: Scalars['Boolean'];
 };
 
-export type UserUpdateArgs = {
-  data: UserUpdateInput;
-  where: UserWhereUniqueInput;
+export type UsersPermissionsUser = {
+  __typename?: 'UsersPermissionsUser';
+  blocked?: Maybe<Scalars['Boolean']>;
+  confirmed?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  provider?: Maybe<Scalars['String']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username: Scalars['String'];
 };
 
-export type UserUpdateInput = {
+export type UsersPermissionsUserEntity = {
+  __typename?: 'UsersPermissionsUserEntity';
+  attributes?: Maybe<UsersPermissionsUser>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UsersPermissionsUserEntityResponse = {
+  __typename?: 'UsersPermissionsUserEntityResponse';
+  data?: Maybe<UsersPermissionsUserEntity>;
+};
+
+export type UsersPermissionsUserEntityResponseCollection = {
+  __typename?: 'UsersPermissionsUserEntityResponseCollection';
+  data: Array<UsersPermissionsUserEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UsersPermissionsUserFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  blocked?: InputMaybe<BooleanFilterInput>;
+  confirmationToken?: InputMaybe<StringFilterInput>;
+  confirmed?: InputMaybe<BooleanFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  resetPasswordToken?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  username?: InputMaybe<StringFilterInput>;
+};
+
+export type UsersPermissionsUserInput = {
+  blocked?: InputMaybe<Scalars['Boolean']>;
+  confirmationToken?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
   email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  resetPasswordToken?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['ID']>;
+  username?: InputMaybe<Scalars['String']>;
 };
 
-export type UserWhereInput = {
-  AND?: InputMaybe<Array<UserWhereInput>>;
-  NOT?: InputMaybe<Array<UserWhereInput>>;
-  OR?: InputMaybe<Array<UserWhereInput>>;
-  email?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IdFilter>;
-  name?: InputMaybe<StringFilter>;
-};
-
-export type UserWhereUniqueInput = {
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
+export type UsersPermissionsUserRelationResponseCollection = {
+  __typename?: 'UsersPermissionsUserRelationResponseCollection';
+  data: Array<UsersPermissionsUserEntity>;
 };
 
 export type AnnouncementsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AnnouncementsQuery = { __typename?: 'Query', announcements?: Array<{ __typename?: 'Announcement', id: string, title?: string | null, created?: any | null }> | null };
-
-export type TodoFragFragment = { __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null };
+export type AnnouncementsQuery = { __typename?: 'Query', announcements?: { __typename?: 'AnnouncementEntityResponseCollection', data: Array<{ __typename?: 'AnnouncementEntity', id?: string | null, attributes?: { __typename?: 'Announcement', title: string, createdAt?: any | null } | null }> } | null };
 
 export type CtQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CtQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
+export type CtQuery = { __typename?: 'Query', classTests?: { __typename?: 'ClassTestEntityResponseCollection', data: Array<{ __typename?: 'ClassTestEntity', id?: string | null, attributes?: { __typename?: 'ClassTest', subject: string, about: string, type: CtType, occurring: any } | null }> } | null };
 
 export type LabQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LabQuery = { __typename?: 'Query', todos?: Array<{ __typename?: 'Todo', id: string, type?: TodoTypeType | null, subject?: string | null, about?: string | null, due?: any | null }> | null };
+export type LabQuery = { __typename?: 'Query', labReports?: { __typename?: 'LabReportEntityResponseCollection', data: Array<{ __typename?: 'LabReportEntity', id?: string | null, attributes?: { __typename?: 'LabReport', subject: string, about: string, due: any } | null }> } | null };
 
-export const TodoFragFragmentDoc = gql`
-    fragment TodoFrag on Todo {
-  id
-  type
-  subject
-  about
-  due
-}
-    `;
+
 export const AnnouncementsDocument = gql`
     query Announcements {
-  announcements(where: {}, orderBy: [{created: desc}], skip: 0) {
-    id
-    title
-    created
+  announcements(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        title
+        createdAt
+      }
+    }
   }
 }
     `;
@@ -748,22 +1058,37 @@ export function useAnnouncementsQuery(options?: Omit<Urql.UseQueryArgs<Announcem
 };
 export const CtDocument = gql`
     query CT {
-  todos(where: {type: {equals: ct}}, orderBy: [{due: asc}], skip: 0) {
-    ...TodoFrag
+  classTests(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        subject
+        about
+        type
+        occurring
+      }
+    }
   }
 }
-    ${TodoFragFragmentDoc}`;
+    `;
 
 export function useCtQuery(options?: Omit<Urql.UseQueryArgs<CtQueryVariables>, 'query'>) {
   return Urql.useQuery<CtQuery>({ query: CtDocument, ...options });
 };
 export const LabDocument = gql`
     query Lab {
-  todos(where: {type: {equals: lab}}, orderBy: [{due: asc}], skip: 0) {
-    ...TodoFrag
+  labReports(sort: ["createdAt:desc"]) {
+    data {
+      id
+      attributes {
+        subject
+        about
+        due
+      }
+    }
   }
 }
-    ${TodoFragFragmentDoc}`;
+    `;
 
 export function useLabQuery(options?: Omit<Urql.UseQueryArgs<LabQueryVariables>, 'query'>) {
   return Urql.useQuery<LabQuery>({ query: LabDocument, ...options });

@@ -2,7 +2,6 @@ import Link from "next/link"
 import { MenuAlt1Icon as MenuIcon } from '@heroicons/react/solid'
 
 import CustomLink from "./link"
-import classes from '../../styles/link.module.scss'
 import { links } from "./links"
 import { navlinkClass } from "../../styles/classes"
 
@@ -11,8 +10,12 @@ const NavBar: React.FC = () => {
     <nav className="navbar bg-neutral px-8 py-2 md:px-16 md:py-4 absolute inset-x-0 z-50 rounded-md shadow-md">
       <div className='navbar-start w-1/4'>
         <div className='prose-h3:leading-none prose-h3:m-0 prose-h3:text-white prose-h3:text-sm md:prose-h3:text-base'>
-          <h3>ME</h3>
-          <h3>XX</h3>
+          <Link href='/'>
+            <a>
+              <h3>ME</h3>
+              <h3>XX</h3>
+            </a>
+          </Link>
         </div>
       </div>
       <div className='navbar-end flex-1'>
