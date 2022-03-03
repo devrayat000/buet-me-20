@@ -23,14 +23,19 @@ const Routine: NextPage<{ routineUrl: string, term: string }> = ({ routineUrl, t
 export default Routine;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/upload/files/1`,
+    const fileRes = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/upload/files/1`,
         { headers: { 'Content-Type': 'application/json' } }
     )
-    const data = await res.json()
+    const fileData = await fileRes.json()
+
+    const routineRes = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT!}/api/routine`,
+        { headers: { 'Content-Type': 'application/json' } }
+    )
+    const routine = await routineRes.json()
     return {
         props: {
-            term: data.term,
-            routineUrl: process.env.NEXT_PUBLIC_API_ENDPOINT! + data.url
+            term: routine.data.attributes.term,
+            routineUrl: process.env.NEXT_PUBLIC_API_ENDPOINT! + fileData.url
         }
     };
 }
