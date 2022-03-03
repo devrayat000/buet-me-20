@@ -13,7 +13,7 @@ export const ssrCache = ssrExchange({
 })
 
 export const client = createClient({
-    url: process.env.NEXT_PUBLIC_API_ENDPOINT!,
+    url: `${process.env.NEXT_PUBLIC_API_ENDPOINT!}/graphql`,
     exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
 })
 
