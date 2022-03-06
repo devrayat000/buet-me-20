@@ -1,25 +1,44 @@
-import { useAnnouncementsQuery, useCtQuery, useLabQuery } from "../../graphql/generated"
+import { useEffect } from "react"
+import { useQuery, useQueryClient } from "react-query"
+
+import { getAnnouncements, getClassTests, getLabReports, QueryKey } from "../../utils/query"
 import { createdDate, dueDate } from "../../utils/time"
 import Items from "./items"
 
 export const AnnouncementItems: React.FC = () => {
-    const [{ data, error, fetching }] = useAnnouncementsQuery()
+    const { data, error, isFetching, isRefetching } = useQuery(QueryKey.ANNOUNCEMENT, getAnnouncements)
+    const client = useQueryClient()
+
+    useEffect(() => {
+        return () => {
+            client.cancelQueries(QueryKey.ANNOUNCEMENT).catch(console.log)
+        }
+    }, [client])
 
     return (
-        <Items {...{ error, fetching, empty: data?.announcements?.data.length === 0 }}>
-            {data?.announcements?.data.map(({ id, attributes: n }) => {
+        <Items {...{ error, fetching: isFetching && !isRefetching, empty: data?.data.length === 0 }}>
+            {data?.data.map(({ id, attributes: n }) => {
                 return <NotificationItem key={id} title={n?.title!} date={createdDate(n?.createdAt)} />
             })}
         </Items>
     )
 }
 
+
+
 export const CTItems: React.FC = () => {
-    const [{ data, error, fetching }] = useCtQuery()
+    const { data, error, isFetching, isRefetching } = useQuery(QueryKey.CLASS_TEST, getClassTests)
+    const client = useQueryClient()
+
+    useEffect(() => {
+        return () => {
+            client.cancelQueries(QueryKey.CLASS_TEST).catch(console.log)
+        }
+    }, [client])
 
     return (
-        <Items {...{ error, fetching, empty: data?.classTests?.data.length === 0 }}>
-            {data?.classTests?.data.map(({ id, attributes: c }) => {
+        <Items {...{ error, fetching: isFetching && !isRefetching, empty: data?.data.length === 0 }}>
+            {data?.data.map(({ id, attributes: c }) => {
                 return <NotificationItem
                     key={id}
                     title={c?.subject!}
@@ -33,11 +52,18 @@ export const CTItems: React.FC = () => {
 }
 
 export const LabItems: React.FC = () => {
-    const [{ data, error, fetching }] = useLabQuery()
+    const { data, error, isFetching, isRefetching } = useQuery(QueryKey.LAB_REPORT, getLabReports)
+    const client = useQueryClient()
+
+    useEffect(() => {
+        return () => {
+            client.cancelQueries(QueryKey.LAB_REPORT).catch(console.log)
+        }
+    }, [client])
 
     return (
-        <Items {...{ error, fetching, empty: data?.labReports?.data.length === 0 }}>
-            {data?.labReports?.data.map(({ id, attributes: l }) => {
+        <Items {...{ error, fetching: isFetching && !isRefetching, empty: data?.data.length === 0 }}>
+            {data?.data.map(({ id, attributes: l }) => {
                 return <NotificationItem key={id} title={l?.subject!} subtitle={l?.about} date={dueDate(l?.due)} />
             })}
         </Items>
@@ -45,7 +71,7 @@ export const LabItems: React.FC = () => {
 }
 
 const NotificationItem: React.FC<NotificationItemProps> = ({ date, title, subtitle, info }) => {
-    return <li className='border bg-white rounded-lg my-1 p-2'>
+    return <li className='border bg-white rounded-lg my-1 p-3'>
         <h5 className='m-0 mb-2 text-base'>{title}</h5>
         {subtitle && <h5 className='m-0 mb-1 text-sm'>{subtitle}</h5>}
         {info && <h6 className="uppercase m-0 mb-0.5 text-xs text-right">{info}</h6>}

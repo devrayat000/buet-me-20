@@ -2,9 +2,9 @@ import { Disclosure, Transition } from "@headlessui/react"
 import { ChevronUpIcon } from "@heroicons/react/solid"
 import clsx from "clsx"
 
-const NotificationPanel: React.FC<NotificationPanelProps> = ({ title, children, color, arrowColor }) => {
+const NotificationPanel: React.FC<NotificationPanelProps> = ({ children, color, arrowColor, button }) => {
     const buttonClass = clsx(
-        'flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-opacity-75',
+        'flex justify-between items-center w-full px-4 py-2 text-sm font-medium text-left rounded-lg focus:outline-none focus-visible:ring focus-visible:ring-opacity-75',
         color
     )
     return (
@@ -12,9 +12,9 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ title, children, 
             {({ open }) => (
                 <>
                     <Disclosure.Button className={buttonClass}>
-                        <span>{title}</span>
+                        {button}
                         <ChevronUpIcon
-                            className={clsx('w-5 h-5 transition-transform', arrowColor,
+                            className={clsx('w-6 h-6 transition-transform', arrowColor,
                                 {
                                     ['rotate-180']: open,
                                 })}
@@ -27,7 +27,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ title, children, 
                         leaveFrom="scale-100 opacity-100"
                         leaveTo="scale-95 opacity-0"
                     >
-                        <Disclosure.Panel as='article' className="pt-2 text-sm text-gray-500">
+                        <Disclosure.Panel as='article' className="pt-2 text-sm text-gray-500 max-h-80 scrollbar scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thin">
                             {children}
                         </Disclosure.Panel>
                     </Transition>
@@ -40,8 +40,8 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ title, children, 
 export default NotificationPanel
 
 export interface NotificationPanelProps {
-    title: string
     children: React.ReactChild
     color: string
     arrowColor: string
+    button: React.ReactChild
 }

@@ -1,20 +1,25 @@
-import { Provider } from 'urql'
-import { StoreProvider } from 'easy-peasy'
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { QueryClientProvider } from 'react-query'
+import { StoreProvider, } from 'easy-peasy'
 import type { AppProps } from 'next/app'
-import type { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 
 import NavBar from '../components/common/navbar'
-import { client, ssrCache } from '../utils/urql'
 import DrawerWrapper from '../components/common/drawer-wrapper'
 import store from '../store'
 
 import '../styles/globals.scss'
+import { queryClient } from '../utils/react-query'
+import { askForNotificationPermission } from '../utils/notification'
 
+// TODO: Implement react-query
 function MyApp({ Component, pageProps }: MyAppProps) {
-  if (pageProps.urqlState) {
-    ssrCache.restoreData(pageProps.urqlState)
-  }
+
+  useEffect(() => {
+    if (Notification.permission === 'default') {
+      askForNotificationPermission()
+    }
+  }, [])
 
   return (
     <>
@@ -29,13 +34,9 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         <DrawerWrapper>
           <main className='relative drawer-content'>
             <NavBar />
-            <Provider value={client}>
+            <QueryClientProvider client={queryClient}>
               <Component {...(pageProps as any)} />
-            </Provider>
-            <footer className='flex flex-col justify-center items-center fixed bottom-0 inset-x-0 text-sm md:text-base'>
-              <h4>&copy; COPYRIGHT 2022 - BUET&apos;XX</h4>
-              <h4>Developed by <span className='text-red-500'>Zul Ikram musaddik Rayat</span></h4>
-            </footer>
+            </QueryClientProvider>
           </main>
         </DrawerWrapper>
       </StoreProvider>
@@ -47,6 +48,5 @@ export default MyApp
 
 interface MyAppProps extends AppProps {
   pageProps: {
-    urqlState?: SSRData
   }
 }

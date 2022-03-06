@@ -1,5 +1,4 @@
 import { Transition } from "@headlessui/react";
-import { CombinedError } from "urql";
 import Spinner from "../icon/spinner";
 
 const Items: React.FC<ItemsProps> = function ({ fetching, children, error, empty }) {
@@ -49,6 +48,6 @@ export default Items
 export interface ItemsProps {
     fetching: boolean
     children: React.ReactNode
-    error?: CombinedError
+    error?: any
     empty?: boolean
 }
